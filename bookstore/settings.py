@@ -52,7 +52,8 @@ INSTALLED_APPS = [
     'product',
     'order',
     'django_extensions',
-    'debug_toolbar',
+    # 'debug_toolbar',
+    'rest_framework.authtoken',
 ]
 
 MIDDLEWARE = [ # Middleware faz uma ponte entre as URLs e nossa aplicação
@@ -145,9 +146,14 @@ REST_FRAMEWORK = {
 #     # or allow read-only access for unauthenticated users.
 #     'DEFAULT_PERMISSION_CLASSES': [
 #         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
-#     ]
+#     ],
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
-    'PAGE_SIZE': 5
+    'PAGE_SIZE': 5,
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
+    ],
 }
 
 INTERNAL_IPS = [
