@@ -16,7 +16,7 @@ class UserFactory(factory.django.DjangoModelFactory):
 class OrderFactory(factory.django.DjangoModelFactory):
     user = factory.SubFactory(UserFactory)
 
-    @factory.post_generation # intercepta a criação do objeto e adiciona elementos
+    @factory.post_generation  # intercepta a criação do objeto e adiciona elementos
     def product(self, create, extracted, **kwargs):
         if not create:
             return
