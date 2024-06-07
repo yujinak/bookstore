@@ -22,10 +22,12 @@ RUN apt-get update \
     && apt-get install --no-install-recommends -y \
         curl \
         build-essential \
-        libpq-dev
+        libpq-dev \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
 
 # Install Poetry
-RUN pip install poetry
+RUN pip install --no-cache-dir poetry
 
 # Copy project requirement files
 WORKDIR $PYSETUP_PATH
