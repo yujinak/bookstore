@@ -32,7 +32,7 @@ WORKDIR $PYSETUP_PATH
 COPY poetry.lock pyproject.toml ./
 
 # Install project dependencies
-RUN poetry install --only main
+RUN poetry install --with dev
 
 # Set working directory and copy project files
 WORKDIR /app
