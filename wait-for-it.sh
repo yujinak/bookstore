@@ -11,7 +11,7 @@ port="$1"
 shift
 
 timeout="${WAIT_FOR_IT_TIMEOUT:-15}"
-cmd=["$@"]
+cmd=( "$@" )
 
 >&2 echo "Waiting for $host:$port..."
 
