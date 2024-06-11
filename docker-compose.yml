@@ -1,4 +1,4 @@
-version: '3.9'
+version: '3.10.5'
 
 services:
   db:
@@ -11,9 +11,12 @@ services:
       - POSTGRES_USER=bookstore_dev
       - POSTGRES_PASSWORD=bookstore_dev
       - POSTGRES_DB=bookstore_dev_db
+
   web:
     build: .
-    command: python manage.py runserver 0.0.0.0:8000
+#    command: [ "./wait-for-it.sh", "db:5432", "--", "python", "manage.py", "runserver", "0.0.0.0:8000" ]
+    command: >
+      sh -c "python manage.py wait_for_db && python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
     volumes:
       - .:/usr/src/app/
     ports:
@@ -21,10 +24,12 @@ services:
     env_file:
       - ./env.dev
     depends_on:
-      - db
+      -  db
     environment:
       - POETRY_VIRTUALENVS_IN_PROJECT=true
       - POETRY_NO_INTERACTION=1
+      - DJANGO_SETTINGS_MODULE=bookstore.settings
+      - DATABASE_URL=postgres://postgres:postgres@db:5432/postgres
 
 volumes:
   postgres_data:
