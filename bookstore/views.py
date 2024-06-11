@@ -4,7 +4,7 @@ from django.views.decorators.csrf import csrf_exempt
 
 import git
 
-
+# update na branch feat-automate-deploy
 @csrf_exempt
 def update(request):
     if request.method == "POST":

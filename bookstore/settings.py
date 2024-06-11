@@ -70,6 +70,7 @@ MIDDLEWARE = [  # Middleware faz uma ponte entre as URLs e nossa aplicação
 
 ROOT_URLCONF = "bookstore.urls"
 
+# update na branch feat-automate-deploy
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
