@@ -1,7 +1,7 @@
 # `python-base` sets up all our shared environment variables
 
-# Use Python 3.9-slim como base
-FROM python:3.10-slim as python-base
+# Use Python -slim como base
+FROM python:3.10.5-slim as python-base
 
 # Set environment variables for Python, pip, and Poetry
 ENV PYTHONUNBUFFERED=1 \
